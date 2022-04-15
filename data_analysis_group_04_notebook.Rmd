@@ -28,6 +28,8 @@ We first tried to clean the data in R. We were successful in filtering by income
 
 There are 11 columns and 25 rows in our cleaned data set, one row for each Maryland jurisdiction. This data is limited because it only has median income, so we will have to join it to other demographic and census data. We will be using the census data on home ownership. At this point, we do not have any housing data included in our analysis data, so for our next milestone we will work on joining datasets with the one we just cleaned. 
 
+*We have left our effort to clean in R below, but ended up cleaning the data outside of R using excel. We wanted to leave it to show we tried, and so you could see where we went wrong/give any tips for the future. :D *
+
 ```{r}
 
 library(tidycensus)
