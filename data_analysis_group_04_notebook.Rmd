@@ -19,9 +19,12 @@ Turn in, via GitHub, an updated draft data notebook (.RMD) that :
 Loads and cleans the core data set to prepare for analysis. 
 Shows basic exploratory analysis to demonstrate an understanding of the dataset, including the number of rows and columns, any obvious limitations or flaws and any reasons why it might not be able to answer the questions you've posed last week.
 
+Here are the things we set out to do in cleaning this data:
 - Clean county names to match census 
-- get rid of date created column
-- try to get rid of MOE row
+- Get rid of date created column
+- Try to get rid of MOE row
+
+We first tried to clean the data in R. We were successful in filtering by income to remove the MOE data that we did not need. We wanted to flip the rows and columns of the original dataframe so it would be easier to map onto census data later on. But we ran into *significant* hurdles trying to flip them. When we used the t() function -- which we Googled -- it saved it as a matrix instead of a dataframe. When we changed it to a dataframe, it looked like the data was consistent but when we tried to export it to Open Refine to continue cleaning it got very messy (it got rid of all of the county names each time). After two hours, we decided to clean up this data manually in excel. The small scale of the data allowed us to do this because there were so few rows and columns, but in the future we know this is not a sustainable way of cleaning. 
 
 ```{r}
 
