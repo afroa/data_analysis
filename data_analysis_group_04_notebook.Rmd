@@ -1,0 +1,59 @@
+---
+title: "data_analysis_group_04_notebook"
+output: html_document
+date: '2022-04-15'
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+Deliverable 2 (week 11) - 10 percent: 
+Turn in, via GitHub, an updated draft data notebook (.RMD) that :
+Loads and cleans the core data set to prepare for analysis. 
+Shows basic exploratory analysis to demonstrate an understanding of the dataset, including the number of rows and columns, any obvious limitations or flaws and any reasons why it might not be able to answer the questions you've posed last week.
+
+- Clean county names to match census 
+- get rid of date created column
+- try to get rid of MOE row
+
+```{r}
+
+library(tidycensus)
+library(tidyverse)
+library(janitor)
+library(dplyr)
+
+#Reading the data into a new dataframe
+
+md_median_household_income <- read.csv("data/md_median_household_income.csv")
+
+# Cleaning the data
+
+clean_rows <- md_median_household_income %>%
+  filter(Data == "Income") %>%
+  clean_names() %>%
+  t() 
+
+flipped_rows <- as.data.frame(clean_rows)
+  
+flipped_rows %>%
+  rename(flipped_rows, V1 = "2010")
+
+#  mutate(COUNTY = toupper(str_remove_all(COUNTY,", West Virginia|County"))) %>%
+#  mutate(COUNTY = str_trim(COUNTY,side="both"))
+
+```
+
+```{r}
+
+cleaned_data <- read_csv("data/final_final.csv")
+
+```
+
