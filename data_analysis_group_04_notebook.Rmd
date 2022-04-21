@@ -1,4 +1,4 @@
-   ---
+---
 title: "data_analysis_group_04_notebook"
 output: html_document
 date: '2022-04-15'
@@ -37,6 +37,11 @@ library(tidyverse)
 library(janitor)
 library(dplyr)
 
+```
+
+
+```{r}
+
 #Reading the data into a new dataframe
 
 md_median_household_income <- read.csv("data/md_median_household_income.csv")
@@ -60,7 +65,30 @@ flipped_rows %>%
 
 ```{r}
 
-cleaned_data <- read_csv("data/final_final.csv")
+median_hh_income_cleaned_data <- read_csv("data/final_final.csv")
 
 ```
+
+**************
+***Question 1***
+##What is the median price of a house in PG County?
+```{r echo=TRUE}
+census_api_key("4803c902de03d46e9a781d90420e95f833c57d66", install=TRUE)
+
+acs2019 <- load_variables(2019, "acs5",cache = TRUE)
+```
+
+```{r}
+##Load census data
+get_acs(
+  geography = "county", 
+  variables = c(medage = "B00002_001"),
+  state = "MD",
+  year = 2019
+)
+
+p10 <- acs(geography = "state", variables = "P001001", year = 2019)
+```
+
+
 
