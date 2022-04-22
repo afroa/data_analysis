@@ -162,3 +162,4 @@ decade_pg_housing <- decade_total_housing_combined %>%
   mutate(percent_change_housing = ((total_housing_2019/total_housing_2010)-1)*100)
 
 ```
+
