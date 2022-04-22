@@ -60,7 +60,62 @@ flipped_rows %>%
 
 ```{r}
 
-cleaned_data <- read_csv("data/final_final.csv")
+median_hh_income_cleaned_data <- read_csv("data/final_final.csv")
 
 ```
+
+***Question 1***
+
+# 1. What percentage of people in Prince George's County rent their homes? What percentage own their homes?
+
+The percentage of people in Prince George's County that rent their homes is roughly 36.8%. The percentage that own their homes is roughly 63.2. One question that we have about these statistics is of those PG County homeowners, how many buy homes to place on the rental-market, and how many buy homes to live in themselves? In the future, we hope to use these percentages to understand why it is cheaper to own a home in PG County than it is to rent, which was a finding from many of the articles on PG County housing that we researched before starting our data exploration for this project. 
+
+# 2. How does Prince George's County compare to other counties for both renters and home owners?
+
+When compared to every other county in the state of Maryland, Prince George's County has the third lowest rate of home ownership. The county also has the third highest rate of renter occupied domiciles. Based on these statistics, we wonder what demographics rent in Prince George's County and what demographics buy in Prince George's County? In the future, we would like to explore racial and socioeconomic demographics and see if these relate at all to home ownership/rental rates. 
+
+# 3. How does Prince George's County's percentage of home ownership and renters in 2019 compare to the county's percentages in 2010?
+
+```{r echo=TRUE}
+acs2019 <- load_variables(2019, "acs5",cache = TRUE)
+
+owner_occupied_md <- get_acs(
+  geography = "county",
+  variables = c(owneroccupied = "B25008_002"),
+  state = "MD",
+  year = 2019
+)
+
+renter_occupied_md <- get_acs(
+  geography = "county",
+  variables = c(renter_occupied = "B25008_003"),
+  state = "MD",
+  year = 2019
+)
+
+all_housing_md <- get_acs(
+  geography = "county",
+  variables = c(total_housing = "B25008_001"),
+  state = "MD",
+  year = 2019
+)
+
+all_combined_housing <- all_housing_md %>% inner_join(renter_occupied_md, by=c("GEOID", "NAME")) %>%
+  rename(total_housing=estimate.x, total_renter=estimate.y) %>%
+  select(NAME, total_housing, total_renter)
+
+final_combined_housing <- all_combined_housing %>% inner_join(owner_occupied_md, by=c("NAME")) %>%
+  rename(total_owner=estimate) %>%
+  select(NAME, total_housing, total_renter, total_owner) %>%
+  mutate(percent_renter = (total_renter/total_housing)*100) %>%
+  mutate(percent_owner = (total_owner/total_housing)*100)
+
+final_combined_housing %>%
+  arrange(desc(percent_owner))
+
+final_combined_housing %>%
+  arrange(desc(percent_renter))
+
+```
+
 
