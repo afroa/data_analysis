@@ -269,6 +269,12 @@ final_racial_demographics <- combined_race_7 %>%
 
 combined_race_and_housing <- final_racial_demographics %>%
   inner_join(final_combined_housing, by=c("NAME"))
+
+prince_georges_race <- combined_race_and_housing %>%
+  filter(NAME == "Prince George's County, Maryland")
+
+prince_georges_race_and_housing <- decade_pg_housing %>%
+  inner_join(prince_georges_race, by=c("NAME"))
  
 
 ```
