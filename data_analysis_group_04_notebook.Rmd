@@ -274,7 +274,7 @@ prince_georges_race <- combined_race_and_housing %>%
   filter(NAME == "Prince George's County, Maryland")
 
 prince_georges_race_and_housing <- decade_pg_housing %>%
-  inner_join(prince_georges_race, by=c("NAME"))
- 
+  inner_join(prince_georges_race, by=c("NAME")) %>%
+  select(GEOID, NAME, black_population, white_population, native_population, asian_population, pacific_island_population, one_other_race, two_or_more_races, two_races_including_some_other_race, total_housing_2019.y, total_renter_2019.y, total_owner_2019.y)
 
 ```
