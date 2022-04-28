@@ -75,20 +75,69 @@ median_hh_income_cleaned_data <- read_csv("data/final_final.csv")
 ```{r echo=TRUE}
 census_api_key("4803c902de03d46e9a781d90420e95f833c57d66", install=TRUE)
 
+
+```
+
+```{r}
 acs2019 <- load_variables(2019, "acs5",cache = TRUE)
 ```
 
 ```{r}
-##Load census data
-get_acs(
-  geography = "county", 
-  variables = c(medage = "B00002_001"),
+##Home ownership by race
+white_data_homeownership <- get_acs(
+  geography = "county",
+  variables = c(race = "B25003A_002"),
   state = "MD",
-  year = 2019
-)
+  year = 2019)
 
-p10 <- acs(geography = "state", variables = "P001001", year = 2019)
+black_data_homeownership <- get_acs(
+  geography = "county",
+  variables = c(race = "B25003B_002"),
+  state = "MD",
+  year = 2019)
+
+americanindian_alaskannative_data_homeownership <- get_acs(
+  geography = "county",
+  variables = c(race = "B25003C_002"),
+  state = "MD",
+  year = 2019)
+
+asian_data_homeownership <- get_acs(
+  geography = "county",
+  variables = c(race = "B25003D_002"),
+  state = "MD",
+  year = 2019)
+
+
+nativehawaiian_aapi_data_homeownership <- get_acs(
+  geography = "county",
+  variables = c(race = "B25003E_002"),
+  state = "MD",
+  year = 2019)
+
+
+someohterracealone_data_homeownership <- get_acs(
+  geography = "county",
+  variables = c(race = "B25003F_002"),
+  state = "MD",
+  year = 2019)
+
+twootherraces_data_homeownership <- get_acs(
+  geography = "county",
+  variables = c(race = "B25003G_002"),
+  state = "MD",
+  year = 2019)
+
+whitealonenothispanicorlatino_data_homeownership <- get_acs(
+  geography = "county",
+  variables = c(race = "B25003H_002"),
+  state = "MD",
+  year = 2019)
+
+hispanicorlatino_data_homeownership <- get_acs(
+  geography = "county",
+  variables = c(race = "B25003I_002"),
+  state = "MD",
+  year = 2019)
 ```
-
-
 
