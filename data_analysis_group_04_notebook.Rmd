@@ -500,9 +500,11 @@ everything_combined <- combined_race_and_housing %>%
 ```
 
 
-# What demographic group owns the greatest share of housing in the state proportional to their population in each county? Is this what we expected?
+# Do white or Black demographic groups own their homes more? Which group rents their homes more? Does this fall in line with what we expect?
 
 **We expect white populations to own the most and Black populations to rent the most**
+
+According to the 2020 census, white people own a greater share of homes across Maryland than Black people preportional to each group's total population in the state. This falls in line with the expectation we had, but the difference is a bit smaller than our initial hypothesis. Black populations also have relatively similar percentages of home ownership and home rentership, with rentership percentage at about 17.5% and ownership at about 18.5%. We expected this to be more unbalanced, similar to what we can see with the data on white people renting vs. buying their homes. Roughly 29% of white Marylanders own their homes, compared to the 9.5% that rent their homes. 
 
 ```{r}
 
@@ -541,6 +543,6 @@ everything_combined %>%
 
 ```
 
-
+# What race in Maryland owns the largest share of the housing market preportional to their population? Which owns the largest share of the renting market? -> TUESDAY IF WE HAVE TIME
 
 
