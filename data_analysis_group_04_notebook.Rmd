@@ -500,11 +500,11 @@ everything_combined <- combined_race_and_housing %>%
 ```
 
 
-# Do white or Black demographic groups own their homes more? Which group rents their homes more? Does this fall in line with what we expect?
+# 3. Do white or Black demographic groups own their homes more? Which group rents their homes more? Does this fall in line with what we expect?
 
 **We expect white populations to own the most and Black populations to rent the most**
 
-According to the 2020 census, white people own a greater share of homes across Maryland than Black people preportional to each group's total population in the state. This falls in line with the expectation we had, but the difference is a bit smaller than our initial hypothesis. Black populations also have relatively similar percentages of home ownership and home rentership, with rentership percentage at about 17.5% and ownership at about 18.5%. We expected this to be more unbalanced, similar to what we can see with the data on white people renting vs. buying their homes. Roughly 29% of white Marylanders own their homes, compared to the 9.5% that rent their homes. Relative to their populations in the state, white people own their own homes at a rate of 11% more than Black people. 
+According to the 2020 census, white people own a greater share of homes across Maryland than Black people preportional to each group's total population in the state. This falls in line with the expectation we had, but the difference is a bit smaller than our initial hypothesis. Black populations also have relatively similar percentages of home ownership and home rentership, with rentership percentage at about 17.5% and ownership at about 18.5%. We have a lot of questions on why these two rates for Black home ownership and Black rentership are so similar in terms of percentages. To understand if this is a common occurrence for minority groups,  We expected this to be more unbalanced, similar to what we can see with the data on white people renting vs. buying their homes. Roughly 29% of white Marylanders own their homes, compared to the 9.5% that rent their homes. Relative to their populations in the state, white people own their own homes at a rate of 11% more than Black people. 
 
 * Why do we think that is?
 
