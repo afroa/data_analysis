@@ -140,4 +140,67 @@ hispanicorlatino_data_homeownership <- get_acs(
   state = "MD",
   year = 2019)
 ```
+```{r}
+##Home renters by race
+white_data_rentership <- get_acs(
+  geography = "county",
+  variables = c(race = "B25003A_003"),
+  state = "MD",
+  year = 2019)
+
+black_data_rentership <- get_acs(
+  geography = "county",
+  variables = c(race = "B25003B_003"),
+  state = "MD",
+  year = 2019)
+
+americanindian_alaskannative_data_rentership <- get_acs(
+  geography = "county",
+  variables = c(race = "B25003C_003"),
+  state = "MD",
+  year = 2019)
+
+asian_data_rentership <- get_acs(
+  geography = "county",
+  variables = c(race = "B25003D_003"),
+  state = "MD",
+  year = 2019)
+
+
+nativehawaiian_aapi_data_rentership <- get_acs(
+  geography = "county",
+  variables = c(race = "B25003E_003"),
+  state = "MD",
+  year = 2019)
+
+
+someohterracealone_data_rentership <- get_acs(
+  geography = "county",
+  variables = c(race = "B25003F_003"),
+  state = "MD",
+  year = 2019)
+
+twootherraces_data_rentership <- get_acs(
+  geography = "county",
+  variables = c(race = "B25003G_003"),
+  state = "MD",
+  year = 2019)
+
+whitealonenothispanicorlatino_data_rentership <- get_acs(
+  geography = "county",
+  variables = c(race = "B25003H_003"),
+  state = "MD",
+  year = 2019)
+
+hispanicorlatino_data_rentership <- get_acs(
+  geography = "county",
+  variables = c(race = "B25003I_003"),
+  state = "MD",
+  year = 2019)
+
+
+
+
+
+```
 
