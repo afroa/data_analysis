@@ -277,4 +277,270 @@ prince_georges_race_and_housing <- decade_pg_housing %>%
   inner_join(prince_georges_race, by=c("NAME")) %>%
   select(GEOID, NAME, black_population, white_population, native_population, asian_population, pacific_island_population, one_other_race, two_or_more_races, two_races_including_some_other_race, total_housing_2019.y, total_renter_2019.y, total_owner_2019.y, percent_change_owner, percent_change_renter, percent_change_housing)
 
+white_data_homeownership <- get_acs(
+  geography = "county",
+  variables = c(race = "B25003A_002"),
+  state = "MD",
+  year = 2019)
+
+black_data_homeownership <- get_acs(
+  geography = "county",
+  variables = c(race = "B25003B_002"),
+  state = "MD",
+  year = 2019)
+
+americanindian_alaskannative_data_homeownership <- get_acs(
+  geography = "county",
+  variables = c(race = "B25003C_002"),
+  state = "MD",
+  year = 2019)
+
+asian_data_homeownership <- get_acs(
+  geography = "county",
+  variables = c(race = "B25003D_002"),
+  state = "MD",
+  year = 2019)
+
+nativehawaiian_aapi_data_homeownership <- get_acs(
+  geography = "county",
+  variables = c(race = "B25003E_002"),
+  state = "MD",
+  year = 2019)
+
+someohterracealone_data_homeownership <- get_acs(
+  geography = "county",
+  variables = c(race = "B25003F_002"),
+  state = "MD",
+  year = 2019)
+
+twootherraces_data_homeownership <- get_acs(
+  geography = "county",
+  variables = c(race = "B25003G_002"),
+  state = "MD",
+  year = 2019)
+
+whitealonenothispanicorlatino_data_homeownership <- get_acs(
+  geography = "county",
+  variables = c(race = "B25003H_002"),
+  state = "MD",
+  year = 2019)
+
+hispanicorlatino_data_homeownership <- get_acs(
+  geography = "county",
+  variables = c(race = "B25003I_002"),
+  state = "MD",
+  year = 2019)
+
+
 ```
+
+
+```{r}
+
+##Owner combined
+owner_combined_race_1 <- white_data_homeownership %>%
+  inner_join(black_data_homeownership, by=c("GEOID", "NAME")) %>%
+  rename(owner_black_population=estimate.y, owner_white_population=estimate.x) %>%
+  select(GEOID, NAME, owner_black_population, owner_white_population)
+
+owner_combined_race_2 <- owner_combined_race_1 %>%
+  inner_join(americanindian_alaskannative_data_homeownership, by=c("GEOID", "NAME")) %>%
+  rename(owner_native_population=estimate) 
+
+owner_combined_race_3 <- owner_combined_race_2 %>%
+  inner_join(asian_data_homeownership, by=c("GEOID", "NAME")) %>%
+  rename(owner_asian_population=estimate)
+
+owner_combined_race_4 <- owner_combined_race_3 %>%
+  inner_join(nativehawaiian_aapi_data_homeownership, by=c("GEOID", "NAME")) %>%
+  rename(owner_pacific_island_population=estimate)
+
+owner_combined_race_5 <- owner_combined_race_4 %>%
+  inner_join(someohterracealone_data_homeownership, by=c("GEOID", "NAME")) %>%
+  rename(owner_some_other_race=estimate)
+
+owner_combined_race_6 <- owner_combined_race_5 %>%
+  inner_join(twootherraces_data_homeownership, by=c("GEOID", "NAME")) %>%
+  rename(owner_two_or_more_races=estimate)
+
+owner_combined_race_7 <- owner_combined_race_6 %>%
+  inner_join(whitealonenothispanicorlatino_data_homeownership, by=c("GEOID", "NAME")) %>%
+  rename(owner_whitealonenothispanicorlatino_data_homeownership=estimate)
+
+owner_combined_race_8 <- owner_combined_race_7 %>%
+  inner_join(hispanicorlatino_data_homeownership, by=c("GEOID", "NAME")) %>%
+  rename(hispanicorlatino_data_homeownership=estimate)
+```
+
+```{r}
+
+##Home renters by race
+
+white_data_rentership <- get_acs(
+  geography = "county",
+  variables = c(race = "B25003A_003"),
+  state = "MD",
+  year = 2019)
+
+black_data_rentership <- get_acs(
+  geography = "county",
+  variables = c(race = "B25003B_003"),
+  state = "MD",
+  year = 2019)
+
+americanindian_alaskannative_data_rentership <- get_acs(
+  geography = "county",
+  variables = c(race = "B25003C_003"),
+  state = "MD",
+  year = 2019)
+
+asian_data_rentership <- get_acs(
+  geography = "county",
+  variables = c(race = "B25003D_003"),
+  state = "MD",
+  year = 2019)
+
+nativehawaiian_aapi_data_rentership <- get_acs(
+  geography = "county",
+  variables = c(race = "B25003E_003"),
+  state = "MD",
+  year = 2019)
+
+someohterracealone_data_rentership <- get_acs(
+  geography = "county",
+  variables = c(race = "B25003F_003"),
+  state = "MD",
+  year = 2019)
+
+twootherraces_data_rentership <- get_acs(
+  geography = "county",
+  variables = c(race = "B25003G_003"),
+  state = "MD",
+  year = 2019)
+
+whitealonenothispanicorlatino_data_rentership <- get_acs(
+  geography = "county",
+  variables = c(race = "B25003H_003"),
+  state = "MD",
+  year = 2019)
+
+hispanicorlatino_data_rentership <- get_acs(
+  geography = "county",
+  variables = c(race = "B25003I_003"),
+  state = "MD",
+  year = 2019)
+
+```
+
+```{r}
+
+#Combined ownership and race
+final_owner_race_demographics <- owner_combined_race_8 %>%
+  select(GEOID, NAME, owner_black_population, owner_white_population, owner_native_population, owner_asian_population, owner_pacific_island_population, owner_some_other_race, owner_two_or_more_races, owner_whitealonenothispanicorlatino_data_homeownership,hispanicorlatino_data_homeownership)
+
+```
+
+
+```{r}
+
+renter_combined_race_1 <- white_data_rentership %>%
+  inner_join(black_data_rentership, by=c("GEOID", "NAME")) %>%
+  rename(renter_black_population=estimate.y, renter_white_population=estimate.x) %>%
+  select(GEOID, NAME, renter_black_population, renter_white_population)
+
+renter_combined_race_2 <- renter_combined_race_1 %>%
+  inner_join(americanindian_alaskannative_data_rentership, by=c("GEOID", "NAME")) %>%
+  rename(renter_native_population=estimate) 
+
+renter_combined_race_3 <- renter_combined_race_2 %>%
+  inner_join(asian_data_rentership, by=c("GEOID", "NAME")) %>%
+  rename(renter_asian_population=estimate)
+
+renter_combined_race_4 <- renter_combined_race_3 %>%
+  inner_join(nativehawaiian_aapi_data_rentership, by=c("GEOID", "NAME")) %>%
+  rename(renter_pacific_island_population=estimate)
+
+renter_combined_race_5 <- renter_combined_race_4 %>%
+  inner_join(someohterracealone_data_rentership, by=c("GEOID", "NAME")) %>%
+  rename(renter_some_other_race=estimate)
+
+renter_combined_race_6 <- renter_combined_race_5 %>%
+  inner_join(twootherraces_data_rentership, by=c("GEOID", "NAME")) %>%
+  rename(renter_two_or_more_races=estimate)
+
+renter_combined_race_7 <- renter_combined_race_6 %>%
+  inner_join(hispanicorlatino_data_rentership, by=c("GEOID", "NAME")) %>%
+  rename(renter_hispanicorlatino_data=estimate)
+
+renter_combined_race_8 <- renter_combined_race_7 %>%
+  inner_join(whitealonenothispanicorlatino_data_rentership, by=c("GEOID", "NAME")) %>%
+  rename(white_alone_rentership=estimate)
+
+```
+
+```{r}
+#Combined ownership and race
+
+final_renter_race_demographics <- renter_combined_race_8 %>%
+  select(GEOID, NAME, renter_black_population, renter_white_population, renter_native_population, renter_asian_population, renter_pacific_island_population, renter_some_other_race, renter_two_or_more_races, renter_hispanicorlatino_data,renter_hispanicorlatino_data)
+
+```
+
+```{r}
+
+
+renter_owner_race_combined <- final_renter_race_demographics %>%
+  inner_join(final_owner_race_demographics, by=c("GEOID", "NAME"))
+
+everything_combined <- combined_race_and_housing %>%
+  inner_join(total_housing_race, by=c("GEOID", "NAME")) %>%
+  select(-c(total_housing_2019.x, total_renter_2019.x, total_owner_2019.x))
+
+
+```
+
+
+# What demographic group owns the greatest share of housing in the state proportional to their population in each county? Is this what we expected?
+
+**We expect white populations to own the most and Black populations to rent the most**
+
+```{r}
+
+# Finding Black renters
+
+everything_combined %>%
+  summarise(
+    md_renters_black_state = sum(renter_black_population),
+    md_black_pop = sum(black_population)) %>%
+  mutate(percent_black_renters = (md_renters_black_state/md_black_pop)*100)
+
+# Finding Black home owners
+
+everything_combined %>%
+  summarise(
+    md_owners_black_state = sum(owner_black_population),
+    md_black_pop = sum(black_population)) %>%
+  mutate(percent_black_owners = (md_owners_black_state/md_black_pop)*100)
+
+# Finding white renters
+
+everything_combined %>%
+  summarise(
+    md_renters_white_state = sum(renter_white_population),
+    md_white_pop = sum(white_population)) %>%
+  mutate(percent_white_renters = (md_renters_white_state/md_white_pop)*100)
+
+# Finding white homeowners
+
+everything_combined %>%
+  summarise(
+    md_owners_white_state = sum(owner_white_population),
+    md_white_pop = sum(white_population)) %>%
+  mutate(percent_white_owners = (md_owners_white_state/md_white_pop)*100)
+
+
+```
+
+
+
+
