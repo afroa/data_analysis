@@ -553,7 +553,7 @@ White populations overwhelmingly have the highest rate of home ownership relativ
 
 We excluded the “some other race alone,” "two other races,” “white alone, not Hispanic or Latino” categories because they are too broad to draw conclusions from for this course of inquiry. They would need more specificity for us to consider them e.g. “two other races” could be broken down to “black and white” or “black and asian” etc. It would be difficult to pair these measures of census populations with the categories in the Census for housing demographic breakdowns because they do not line up perfectly like the other categories displaying one demographic. 
 
-Some questions we have based on the conclusions from this data analysis are 
+We were surprised by the Hispanic ownership and rentership rates, but believe it is due to the fact that many people who self-report as Hispanic also report as white, or as members of another race. 
 
 ```{r}
 
