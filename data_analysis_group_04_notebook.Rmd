@@ -615,6 +615,27 @@ everything_combined %>%
     md_white_pop = sum(white_population)) %>%
   mutate(percent_white_owners = (md_owners_hispanic_state/md_white_pop)*100)
 
+# Showing like this because we have made joining these dataframes too difficult because they don't contain a name column, but we can fix in future if needed. 
+
+# Black renters = 17.48%
+# Black owners = 18.55%
+
+# White r = 9.56%
+# White o=29.88%
+
+# Asian r = 9.66%
+# Asian o = 22.54%
+
+# Native r = 17.65%
+# Native o = 22.38%
+
+# Pacific r = 13.18%
+# Pacific o =  18.49%
+
+# Hispanic r = 2.19%
+# Hispanic o = 2.19%
+
+
 ```
 
 
