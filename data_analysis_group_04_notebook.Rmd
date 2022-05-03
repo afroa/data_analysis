@@ -551,7 +551,7 @@ everything_combined %>%
 
 White populations overwhelmingly have the highest rate of home ownership relative to their population in the state, followed closely by Asian and Native populations, who have high home ownership rates but obviously smaller populations in the state. The demographic in the state with the highest percentage of home rentership is Native Americans. This makes us wonder about how the state treats reservation property for Native Americans in Maryland and if this affects their rate of home ownership and rentership. 
 
-We excluded the “some other race alone,” "two other races,” “white alone, not Hispanic or Latino” categories because they are too broad to draw conclusions from for this course of inquiry. They would need more specificity for us to consider them e.g. “two other races” could be broken down to “black and white” or “black and asian” etc. It would be difficult to pair these measures of census populations with the categories in the Census for housing demographic breakdowns because they do not line up perfectly. 
+We excluded the “some other race alone,” "two other races,” “white alone, not Hispanic or Latino” categories because they are too broad to draw conclusions from for this course of inquiry. They would need more specificity for us to consider them e.g. “two other races” could be broken down to “black and white” or “black and asian” etc. It would be difficult to pair these measures of census populations with the categories in the Census for housing demographic breakdowns because they do not line up perfectly like the other categories displaying one demographic. 
 
 ```{r}
 
