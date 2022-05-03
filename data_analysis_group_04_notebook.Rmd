@@ -493,8 +493,7 @@ renter_owner_race_combined <- final_renter_race_demographics %>%
   inner_join(final_owner_race_demographics, by=c("GEOID", "NAME"))
 
 everything_combined <- combined_race_and_housing %>%
-  inner_join(total_housing_race, by=c("GEOID", "NAME")) %>%
-  select(-c(total_housing_2019.x, total_renter_2019.x, total_owner_2019.x))
+  inner_join(renter_owner_race_combined, by=c("GEOID", "NAME")) 
 
 
 ```
@@ -548,6 +547,75 @@ everything_combined %>%
 
 ```
 
-# What race in Maryland owns the largest share of the housing market preportional to their population? Which owns the largest share of the renting market? -> TUESDAY IF WE HAVE TIME
+# 5. What race in Maryland owns the largest share of the housing market preportional to their population? Which owns the largest share of the renting market? -> TUESDAY IF WE HAVE TIME
+
+```{r}
+
+# Finding Asian renters
+
+asian_renters <- everything_combined %>%
+  summarise(
+    md_renters_asian_state = sum(renter_asian_population),
+    md_asian_pop = sum(asian_population)) %>%
+  mutate(percent_asian_renters = (md_renters_asian_state/md_asian_pop)*100)
+
+# Finding Asian home owners
+
+asian_owners <- everything_combined %>%
+  summarise(
+    md_owners_asian_state = sum(owner_asian_population),
+    md_asian_pop = sum(asian_population)) %>%
+  mutate(percent_asian_owners = (md_owners_asian_state/md_asian_pop)*100)
+
+# Finding Native renters
+
+native_renters <- everything_combined %>%
+  summarise(
+    md_renters_native_state = sum(renter_native_population),
+    md_native_pop = sum(native_population)) %>%
+  mutate(percent_native_renters = (md_renters_native_state/md_native_pop)*100)
+
+# Finding Native homeowners
+
+native_owners <- everything_combined %>%
+  summarise(
+    md_owners_native_state = sum(owner_native_population),
+    md_native_pop = sum(native_population)) %>%
+  mutate(percent_native_owners = (md_owners_native_state/md_native_pop)*100)
+
+# Finding Pacific Island renters
+
+pacific_renters <- everything_combined %>%
+  summarise(
+    md_renters_pacific_state = sum(renter_pacific_island_population),
+    md_pacific_pop = sum(pacific_island_population)) %>%
+  mutate(percent_pacific_renters = (md_renters_pacific_state/md_pacific_pop)*100)
+
+# Finding Pacific Island homeowners 
+
+pacific_owners <- everything_combined %>%
+  summarise(
+    md_owner_pacific_state = sum(owner_pacific_island_population),
+    md_pacific_pop = sum(pacific_island_population)) %>%
+  mutate(percent_pacific_renters = (md_owner_pacific_state/md_pacific_pop)*100)
+
+# Finding Hispanic renters
+
+everything_combined %>%
+  summarise(
+    md_renters_hispanic_state = sum(renter_hispanicorlatino_data),
+    md_white_pop = sum(white_population)) %>%
+  mutate(percent_hispanic_renters = (md_renters_hispanic_state/md_white_pop)*100)
+
+# Finding Hispanic homeowners
+
+everything_combined %>%
+  summarise(
+    md_owners_hispanic_state = sum(hispanicorlatino_data_homeownership),
+    md_white_pop = sum(white_population)) %>%
+  mutate(percent_white_owners = (md_owners_hispanic_state/md_white_pop)*100)
+
+```
+
 
 
