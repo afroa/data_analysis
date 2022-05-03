@@ -547,7 +547,7 @@ everything_combined %>%
 
 ```
 
-# 5. What race in Maryland owns the largest share of the housing market preportional to their population? Which owns the largest share of the renting market? -> TUESDAY IF WE HAVE TIME
+# 5. What race in Maryland owns the largest share of the housing market preportional to their population? Which owns the largest share of the renting market?
 
 White populations overwhelmingly have the highest rate of home ownership relative to their population in the state, followed closely by Asian and Native populations, who have high home ownership rates but obviously smaller populations in the state. The demographic in the state with the highest percentage of home rentership is Native Americans. This makes us wonder about how the state treats reservation property for Native Americans in Maryland and if this affects their rate of home ownership and rentership. 
 
