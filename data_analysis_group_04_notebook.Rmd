@@ -549,9 +549,11 @@ everything_combined %>%
 
 # 5. What race in Maryland owns the largest share of the housing market preportional to their population? Which owns the largest share of the renting market?
 
-White populations overwhelmingly have the highest rate of home ownership relative to their population in the state, followed closely by Asian and Native populations, who have high home ownership rates but obviously smaller populations in the state. The demographic in the state with the highest percentage of home rentership is Native Americans. This makes us wonder about how the state treats reservation property for Native Americans in Maryland and if this affects their rate of home ownership and rentership. 
+White populations overwhelmingly have the highest rate of home ownership relative to their population in the state, followed closely by Asian and Native populations, who have high home ownership rates but obviously smaller populations in the state. The demographic in the state with the highest percentage of home rentership is Native Americans. This makes us wonder about how the state treats reservation property for Native Americans in Maryland and if this affects their rate of home ownership and rentership. Overall, when comparing the ratio of owners to renters across populations, data shows that Asians and Native Americans are the most likely to own a home. It also shows that Native Americans are the most likely to rent. However, data for Native Americans is unreliable because the Census Bureau revealed in 2020 that it had vastly undercounted Native Americans by 4.9%, the most of any undercounted group. Additionally, because significant numbers of Native Americans live on reservations, obtaining close-to-succinct statistics on their home ownership and rental statuses can be challenging.
 
 We excluded the “some other race alone,” "two other races,” “white alone, not Hispanic or Latino” categories because they are too broad to draw conclusions from for this course of inquiry. They would need more specificity for us to consider them e.g. “two other races” could be broken down to “black and white” or “black and asian” etc. It would be difficult to pair these measures of census populations with the categories in the Census for housing demographic breakdowns because they do not line up perfectly like the other categories displaying one demographic. 
+
+Some questions we have based on the conclusions from this data analysis are 
 
 ```{r}
 
