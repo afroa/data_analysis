@@ -491,7 +491,6 @@ final_renter_race_demographics <- renter_combined_race_8 %>%
 
 renter_owner_race_combined <- final_renter_race_demographics %>%
   inner_join(final_owner_race_demographics, by=c("GEOID", "NAME"))
-
 everything_combined <- combined_race_and_housing %>%
   inner_join(renter_owner_race_combined, by=c("GEOID", "NAME")) 
 
@@ -621,7 +620,7 @@ everything_combined %>%
   summarise(
     md_owners_hispanic_state = sum(hispanicorlatino_data_homeownership),
     md_white_pop = sum(white_population)) %>%
-  mutate(percent_white_owners = (md_owners_hispanic_state/md_white_pop)*100)
+  mutate(percent_hispanic_owners = (md_owners_hispanic_state/md_white_pop)*100)
 
 
 # Showing like this because we have made joining these dataframes too difficult because they don't contain a name column, but we can fix in future if needed. 
@@ -644,6 +643,192 @@ everything_combined %>%
 # Hispanic r = 2.19%
 # Hispanic o = 2.19%
 
+
+```
+
+# TUESDAY: ANDRES ZOOM COMMENT: Ok so on Tuesday, our final exploration will be to find the more accurate population by demographic data to see what the true ownership/rentership breakdown is. We’ll do this by taking the “SEX BY AGE” ACS variables for males under 18, combined with the same thing for females under 18. Then we’ll combine that data and we will subtract those numbers from the total populations by demographic, which will allow us to run the percentage calculations to find the true numbers. To get us started, SEX BY AGE (WHITE ALONE) is “B01001A_025.
+
+
+Derek comment: This is good stuff and getting better. I would love to see Prince George's compared to another county in Maryland that is at least somewhat similar, either demographically or in terms of growth. You also could compare it to Maryland as a whole. This would offer some context for what you are finding at a broad level.
+
+# 6. How does the racial demographic breakdown of housing in Prince George's County compare to the breakdown of the rest of the state? Do any demographic groups stand out for being particularly different than the breakdowns of the state as a whole? Why do we think there is a discrepancy?
+
+
+
+
+```{r}
+
+
+view(prince_georges_race_and_housing) 
+
+pg_owner_by_race <- final_owner_race_demographics %>%
+  filter(NAME == "Prince George's County, Maryland")
+
+pg_renter_by_race <- final_renter_race_demographics %>%
+  filter(NAME == "Prince George's County, Maryland")
+
+pg_combined_housing <- pg_owner_by_race %>% inner_join(pg_renter_by_race, by=c("GEOID", "NAME"))
+
+pg_combined_race_housing <- pg_combined_housing %>% inner_join(prince_georges_race_and_housing, by=c("GEOID", "NAME"))
+
+pg_selected_columns <- pg_combined_race_housing[1, 1:27]
+  
+  
+# Finding PG Black renters
+
+pg_black_renters <- pg_selected_columns %>%
+  summarise(
+    pg_renters_black_state = sum(renter_black_population),
+    pg_black_pop = sum(black_population)) %>%
+  mutate(percent_black_renters = (pg_renters_black_state/pg_black_pop)*100)
+
+# Finding PG Black home owners
+
+pg_black_owners <- pg_selected_columns %>%
+  summarise(
+    pg_owners_black_state = sum(owner_black_population),
+    pg_black_pop = sum(black_population)) %>%
+  mutate(percent_black_owners = (pg_owners_black_state/pg_black_pop)*100)
+
+# Finding PG white renters
+
+pg_white_renters <- pg_selected_columns %>%
+  summarise(
+    pg_renters_white_state = sum(renter_white_population),
+    pg_white_pop = sum(white_population)) %>%
+  mutate(percent_white_renters = (pg_renters_white_state/pg_white_pop)*100)
+
+# Finding PG white homeowners
+
+pg_white_owners <- pg_selected_columns %>%
+  summarise(
+    pg_owners_white_state = sum(owner_white_population),
+    pg_white_pop = sum(white_population)) %>%
+  mutate(percent_white_owners = (pg_owners_white_state/pg_white_pop)*100)
+
+
+# Finding PG Asian renters
+
+pg_asian_renters <- pg_selected_columns %>%
+  summarise(
+    pg_renters_asian_state = sum(renter_asian_population),
+    pg_asian_pop = sum(asian_population)) %>%
+  mutate(percent_asian_renters = (pg_renters_asian_state/pg_asian_pop)*100)
+
+# Finding PG Asian home owners
+
+pg_asian_owners <- pg_selected_columns %>%
+  summarise(
+    pg_owners_asian_state = sum(owner_asian_population),
+    pg_asian_pop = sum(asian_population)) %>%
+  mutate(percent_asian_owners = (pg_owners_asian_state/pg_asian_pop)*100)
+
+# Finding PG Native renters
+
+pg_native_renters <- pg_selected_columns %>%
+  summarise(
+    pg_renters_native_state = sum(renter_native_population),
+    pg_native_pop = sum(native_population)) %>%
+  mutate(percent_native_renters = (pg_renters_native_state/pg_native_pop)*100)
+
+# Finding PG Native homeowners
+
+pg_native_owners <- pg_selected_columns %>%
+  summarise(
+    pg_owners_native_state = sum(owner_native_population),
+    pg_native_pop = sum(native_population)) %>%
+  mutate(percent_native_owners = (pg_owners_native_state/pg_native_pop)*100)
+
+# Finding PG Pacific Island renters
+
+pg_pacific_renters <- pg_selected_columns %>%
+  summarise(
+    pg_renters_pacific_state = sum(renter_pacific_island_population),
+    pg_pacific_pop = sum(pacific_island_population)) %>%
+  mutate(percent_pacific_renters = (pg_renters_pacific_state/pg_pacific_pop)*100)
+
+# Finding PG Pacific Island homeowners 
+
+pg_pacific_owners <- pg_selected_columns %>%
+  summarise(
+    md_owner_pacific_state = sum(owner_pacific_island_population),
+    md_pacific_pop = sum(pacific_island_population)) %>%
+  mutate(percent_pacific_renters = (md_owner_pacific_state/md_pacific_pop)*100)
+
+# Finding PG Hispanic renters
+
+pg_hispanic_renters <- pg_selected_columns %>%
+  summarise(
+    pg_renters_hispanic_state = sum(renter_hispanicorlatino_data),
+    pg_white_pop = sum(white_population)) %>%
+  mutate(percent_hispanic_renters = (pg_renters_hispanic_state/pg_white_pop)*100)
+
+# Finding PG Hispanic homeowners
+
+pg_hispanic_owners <- pg_selected_columns %>%
+  summarise(
+    pg_owners_hispanic_state = sum(hispanicorlatino_data_homeownership),
+    pg_white_pop = sum(white_population)) %>%
+  mutate(percent_hispanic_owners = (pg_owners_hispanic_state/pg_white_pop)*100)
+
+
+# ORIGINAL CALCULATIONS W/O CALCULATING FOR 18 and YOUNGER
+
+# MD
+
+# Black renters = 17.48% 
+# Black owners = 18.55% 
+
+# White r = 9.56% 
+# White o=29.88% 
+
+# Asian r = 9.66%
+# Asian o = 22.54%
+
+# Native r = 17.65%
+# Native o = 22.38%
+
+# Pacific r = 13.18%
+# Pacific o =  18.49%
+
+# Hispanic r = 2.19%
+# Hispanic o = 2.19%
+
+
+
+# PG
+
+# Black renters = 14.26%
+# Black owners = 22.5
+
+# White r = 9.67
+# White o= 27.56
+
+# Asian r = 10.15
+# Asian o = 20.25
+
+# Native r =  19.43
+# Native o =  20.01
+
+# Pacific r =   34.95
+# Pacific o =   17.47
+
+# Hispanic r =  12.61
+# Hispanic o =  11.61
+
+```
+
+# B09001_002 <- subtract from total population number
+
+```{r}
+
+
+pop_under_18_county <- get_acs(
+  geography = "county",
+  variables = c(owneroccupied = "B09001_002"),
+  state = "MD",
+  year = 2019
+)
 
 ```
 
