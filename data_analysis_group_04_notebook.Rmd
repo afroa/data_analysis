@@ -646,6 +646,123 @@ everything_combined %>%
 
 ```
 
+# B09001_002 <- subtract from total population number
+
+```{r}
+
+
+pop_under_18_county <- get_acs(
+  geography = "county",
+  variables = c(owneroccupied = "B09001_002"),
+  state = "MD",
+  year = 2019
+)
+
+white_kids <- get_acs(
+  geography = "county",
+  variables = c(white_male_under_5 = "B01001A_003", white_male_5_to_9 = "B01001A_004", white_male_10_to_14 = "B01001A_005", white_male_15_to_17 = "B01001A_006", white_female_under_5 = "B01001A_018", white_female_5_to_9 = "B01001A_019", white_female_10_to_14 = "B01001A_020", white_female_15_to_17 = "B01001A_021"), 
+  state = "MD",
+  year = 2019
+)
+
+black_kids <- get_acs(
+  geography = "county",
+  variables = c(black_male_under_5 = "B01001B_003", black_male_5_to_9 = "B01001B_004", black_male_10_to_14 = "B01001B_005", black_male_15_to_17 = "B01001B_006", black_female_under_5 = "B01001B_018", black_female_5_to_9 = "B01001B_019", black_female_10_to_14 = "B01001B_020", black_female_15_to_17 = "B01001B_021"), 
+  state = "MD",
+  year = 2019
+)
+
+native_kids <- get_acs(
+  geography = "county",
+  variables = c(native_alaskan_male_under_5 = "B01001C_003", native_alaskan_male_5_to_9 = "B01001C_004", native_alaskan_male_10_to_14 = "B01001C_005", native_alaskan_male_15_to_17 = "B01001C_006",
+native_alaskan_female_under_5 = "B01001C_018", native_alaskan_female_5_to_9 = "B01001C_019", native_alaskan_female_10_to_14 = "B01001C_020", native_alaskan_female_15_to_17 = "B01001C_021"), 
+  state = "MD",
+  year = 2019
+)
+
+hispanic_kids <- get_acs(
+  geography = "county",
+  variables = c(hispanic_male_under_5 = "B01001I_003", hispanic_male_5_to_9 = "B01001I_004", hispanic_male_10_to_14 = "B01001I_005", hispanic_male_14_to_17 = "B01001I_006", hispanic_female_under_5 = "B01001I_018", hispanic_female_5_to_9 = "B01001I_019", hispanic_female_10_to_14 = "B01001I_020", hispanic_female_15_to_17 = "B01001I_021"), 
+  state = "MD",
+  year = 2019
+)
+
+asian_kids <- get_acs(
+  geography = "county",
+  variables = c(asian_male_under_5 = "B01001D_003", asian_male_5_to_9 = "B01001D_004", asian_male_10_to_14 = "B01001D_005", asian_male_14_to_17 = "B01001D_006",
+asian_female_under_5 = "B01001D_018", asian_female_5_to_9 = "B01001D_019", asian_female_10_to_14 = "B01001D_020", asian_female_15_to_17 = "B01001D_021"), 
+  state = "MD",
+  year = 2019
+)
+
+```
+B01001E_018
+Estimate!!Total:!!Female:!!Under 5 years
+SEX BY AGE (NATIVE HAWAIIAN AND OTHER PACIFIC ISLANDER ALONE)
+192
+B01001E_019
+Estimate!!Total:!!Female:!!5 to 9 years
+SEX BY AGE (NATIVE HAWAIIAN AND OTHER PACIFIC ISLANDER ALONE)
+193
+B01001E_020
+Estimate!!Total:!!Female:!!10 to 14 years
+SEX BY AGE (NATIVE HAWAIIAN AND OTHER PACIFIC ISLANDER ALONE)
+194
+B01001E_021
+Estimate!!Total:!!Female:!!15 to 17 years
+SEX BY AGE (NATIVE HAWAIIAN AND OTHER PACIFIC ISLA
+
+
+B01001B_018
+Estimate!!Total:!!Female:!!Under 5 years
+SEX BY AGE (BLACK OR AFRICAN AMERICAN ALONE)
+99
+B01001B_019
+Estimate!!Total:!!Female:!!5 to 9 years
+SEX BY AGE (BLACK OR AFRICAN AMERICAN ALONE)
+100
+B01001B_020
+Estimate!!Total:!!Female:!!10 to 14 years
+SEX BY AGE (BLACK OR AFRICAN AMERICAN ALONE)
+101
+B01001B_021
+Estimate!!Total:!!Female:!!15 to 17 years
+SEX BY AGE (BLACK OR AFRICAN AMERICAN ALONE)
+
+B01001A_018
+Estimate!!Total:!!Female:!!Under 5 years
+SEX BY AGE (WHITE ALONE)
+68
+B01001A_019
+Estimate!!Total:!!Female:!!5 to 9 years
+SEX BY AGE (WHITE ALONE)
+69
+B01001A_020
+Estimate!!Total:!!Female:!!10 to 14 years
+SEX BY AGE (WHITE ALONE)
+70
+B01001A_021
+Estimate!!Total:!!Female:!!15 to 17 years
+SEX BY AGE (WHITE ALONE)
+
+
+B01001B_003
+Estimate!!Total:!!Male:!!Under 5 years
+SEX BY AGE (BLACK OR AFRICAN AMERICAN ALONE)
+84
+B01001B_004
+Estimate!!Total:!!Male:!!5 to 9 years
+SEX BY AGE (BLACK OR AFRICAN AMERICAN ALONE)
+85
+B01001B_005
+Estimate!!Total:!!Male:!!10 to 14 years
+SEX BY AGE (BLACK OR AFRICAN AMERICAN ALONE)
+86
+B01001B_006
+Estimate!!Total:!!Male:!!15 to 17 years
+SEX BY AGE (BLACK OR AFRICAN AMERICAN ALONE)
+
+
 # TUESDAY: ANDRES ZOOM COMMENT: Ok so on Tuesday, our final exploration will be to find the more accurate population by demographic data to see what the true ownership/rentership breakdown is. We’ll do this by taking the “SEX BY AGE” ACS variables for males under 18, combined with the same thing for females under 18. Then we’ll combine that data and we will subtract those numbers from the total populations by demographic, which will allow us to run the percentage calculations to find the true numbers. To get us started, SEX BY AGE (WHITE ALONE) is “B01001A_025.
 
 
@@ -819,20 +936,6 @@ pg_hispanic_owners <- pg_selected_columns %>%
 
 # Hispanic r =  12.61
 # Hispanic o =  11.61
-
-```
-
-# B09001_002 <- subtract from total population number
-
-```{r}
-
-
-pop_under_18_county <- get_acs(
-  geography = "county",
-  variables = c(owneroccupied = "B09001_002"),
-  state = "MD",
-  year = 2019
-)
 
 ```
 
