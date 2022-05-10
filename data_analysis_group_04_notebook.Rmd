@@ -695,6 +695,16 @@ asian_female_under_5 = "B01001D_018", asian_female_5_to_9 = "B01001D_019", asian
   year = 2019
 )
 
+
+native_hawaiian_kids <- get_acs(
+  geography = "county",
+  variables = c(native_hawiian_male_under_5 = "B01001E_003", native_hawiian_male_5_to_9 = "B01001E_004", native_hawiian_male_10_to_14 = "B01001E_005", native_hawiian_male_14_to_17 = "B01001E_006",
+native_hawiian_female_under_5 = "B01001E_018", native_hawiian_female_5_to_9 = "B01001E_019", native_hawiian_female_10_to_14 = "B01001E_020", native_hawiian_female_15_to_17 = "B01001E_021"), 
+  state = "MD",
+  year = 2019
+)
+
+
 ```
 B01001E_018
 Estimate!!Total:!!Female:!!Under 5 years
