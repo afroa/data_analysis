@@ -968,12 +968,15 @@ everything_combined %>%
 Update to question 5 based on filtering out of children data:
 
 
+We did the calculations to find the total population of each racial demographic in the state without kids by hand, using the console in R as a workaround to the code issues we were having. It was the most efficient way forward for us.
 
+The number of Asians with no kids who rent vs. own a house isn't too far off from the total population of the race that rents vs. owns a house. 12.08% of Asians without kids rented compared to the race's total of 9.66%. 28.19% of Asians without kids owned a house when subtracting the number of kids from the figures, compared to 22.54% from the race's total population.
 
+The case was the same with all other races in census data, Blacks, and Whites. On average, there were disparities of between 4% and 6% when comparing how much of the total population rented vs. owned a home with how much of the population that owned kids rented vs. owned a home.
 
+For Hispanics, our calculations didn't yield data we could discuss authoritatively and this points to the Census Bureau's inefficiency in counting the population well. This is because of the aforementioned issue of the Census not collecting Hispanic-only population data, so the change was mute when we were subtracting a smaller Hispanic kid population from a huge white population in the state. 
 
-
-
+None of these figures added up to 100% of the population, even after taking out the number of kids that would have been present in the state population data. Taking out the number of kids also did not substantively change what populations were the most likely to own or rent homes in Prince George's County based on the figures that we used from the Census data. This makes us wonder what else we possibly could have done to make our data sum up to a correct amount. 
 
 * QUESTION 6 *
 
