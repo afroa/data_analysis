@@ -656,21 +656,35 @@ pop_under_18_county <- get_acs(
   variables = c(owneroccupied = "B09001_002"),
   state = "MD",
   year = 2019
-)
+) %>%
+  select(NAME, variable, estimate)
 
 white_kids <- get_acs(
   geography = "county",
   variables = c(white_male_under_5 = "B01001A_003", white_male_5_to_9 = "B01001A_004", white_male_10_to_14 = "B01001A_005", white_male_15_to_17 = "B01001A_006", white_female_under_5 = "B01001A_018", white_female_5_to_9 = "B01001A_019", white_female_10_to_14 = "B01001A_020", white_female_15_to_17 = "B01001A_021"), 
   state = "MD",
   year = 2019
-)
+) %>%
+  select(NAME, variable, estimate)
 
 black_kids <- get_acs(
   geography = "county",
   variables = c(black_male_under_5 = "B01001B_003", black_male_5_to_9 = "B01001B_004", black_male_10_to_14 = "B01001B_005", black_male_15_to_17 = "B01001B_006", black_female_under_5 = "B01001B_018", black_female_5_to_9 = "B01001B_019", black_female_10_to_14 = "B01001B_020", black_female_15_to_17 = "B01001B_021"), 
   state = "MD",
   year = 2019
-)
+) %>%
+  select(NAME, variable, estimate)
+
+black_kids_clean <- black_kids %>%
+  group_by(NAME) %>%
+  summarise(
+    total_kids = sum(estimate)
+  )
+
+black_kids_clean %>%
+  summarise(
+    total_kids_state = sum(total_kids)
+  )
 
 native_kids <- get_acs(
   geography = "county",
@@ -678,14 +692,38 @@ native_kids <- get_acs(
 native_alaskan_female_under_5 = "B01001C_018", native_alaskan_female_5_to_9 = "B01001C_019", native_alaskan_female_10_to_14 = "B01001C_020", native_alaskan_female_15_to_17 = "B01001C_021"), 
   state = "MD",
   year = 2019
-)
+) %>%
+  select(NAME, variable, estimate)
+
+native_kids_clean <- native_kids %>%
+  group_by(NAME) %>%
+  summarise(
+    total_kids = sum(estimate)
+  )
+
+native_kids_clean %>%
+  summarise(
+    total_kids_state = sum(total_kids)
+  )
 
 hispanic_kids <- get_acs(
   geography = "county",
   variables = c(hispanic_male_under_5 = "B01001I_003", hispanic_male_5_to_9 = "B01001I_004", hispanic_male_10_to_14 = "B01001I_005", hispanic_male_14_to_17 = "B01001I_006", hispanic_female_under_5 = "B01001I_018", hispanic_female_5_to_9 = "B01001I_019", hispanic_female_10_to_14 = "B01001I_020", hispanic_female_15_to_17 = "B01001I_021"), 
   state = "MD",
   year = 2019
-)
+) %>%
+  select(NAME, variable, estimate)
+
+hispanic_kids_clean <- hispanic_kids %>%
+  group_by(NAME) %>%
+  summarise(
+    total_kids = sum(estimate)
+  )
+
+hispanic_kids_clean %>%
+  summarise(
+    total_kids_state = sum(total_kids)
+  )
 
 asian_kids <- get_acs(
   geography = "county",
@@ -693,8 +731,19 @@ asian_kids <- get_acs(
 asian_female_under_5 = "B01001D_018", asian_female_5_to_9 = "B01001D_019", asian_female_10_to_14 = "B01001D_020", asian_female_15_to_17 = "B01001D_021"), 
   state = "MD",
   year = 2019
-)
+) %>%
+  select(NAME, variable, estimate)
 
+asian_kids_clean <- asian_kids %>%
+  group_by(NAME) %>%
+  summarise(
+    total_kids = sum(estimate)
+  )
+
+asian_kids_clean %>%
+  summarise(
+    total_kids_state = sum(total_kids)
+  )
 
 native_hawaiian_kids <- get_acs(
   geography = "county",
@@ -702,8 +751,20 @@ native_hawaiian_kids <- get_acs(
 native_hawiian_female_under_5 = "B01001E_018", native_hawiian_female_5_to_9 = "B01001E_019", native_hawiian_female_10_to_14 = "B01001E_020", native_hawiian_female_15_to_17 = "B01001E_021"), 
   state = "MD",
   year = 2019
-)
+) %>%
+  select(NAME, variable, estimate) 
 
+
+native_hawaiian_kids_clean <- native_hawaiian_kids %>%
+  group_by(NAME) %>%
+  summarise(
+    total_kids = sum(estimate)
+  )
+
+native_hawaiian_kids_clean %>%
+  summarise(
+    total_kids_state = sum(total_kids)
+  )
 
 ```
 B01001E_018
