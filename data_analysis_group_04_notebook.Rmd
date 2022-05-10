@@ -976,7 +976,9 @@ The case was the same with all other races in census data, Blacks, and Whites. O
 
 For Hispanics, our calculations didn't yield data we could discuss authoritatively and this points to the Census Bureau's inefficiency in counting the population well. This is because of the aforementioned issue of the Census not collecting Hispanic-only population data, so the change was mute when we were subtracting a smaller Hispanic kid population from a huge white population in the state. 
 
-None of these figures added up to 100% of the population, even after taking out the number of kids that would have been present in the state population data. Taking out the number of kids also did not substantively change what populations were the most likely to own or rent homes in Prince George's County based on the figures that we used from the Census data. This makes us wonder what else we possibly could have done to make our data sum up to a correct amount. 
+None of these figures added up to 100% of the population, even after taking out the number of kids that would have been present in the state population data. Taking out the number of kids also did not substantively change what populations were the most likely to own or rent homes in the state based on the figures that we used from the Census data. This makes us wonder what else we possibly could have done to make our data sum up to a correct amount. 
+
+We would have loved to pursue inquiries into Prince George's County specifically using this data, but we ran out of time during class today and do not have the bandwidth as a group to keep analyzing the data past this, especially because of our consideration of a sixth question. 
 
 * QUESTION 6 *
 
