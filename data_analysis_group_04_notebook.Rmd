@@ -777,75 +777,132 @@ native_hawaiian_kids_clean %>%
     total_kids_state = sum(total_kids)
   )
 
+# Total kids in the whole state: 
+
+# Totals:
+
+# native_hawaiian_kids: 691
+
+# pacific_kids: 
+
+# hispanic_kids: 205266
+
+# native_alaskan_kids: 3241
+
+# white_kids: 656618
+
+# black_kids: 416120
+
+# asian_kdis: 75827
+
 ```
-B01001E_018
-Estimate!!Total:!!Female:!!Under 5 years
-SEX BY AGE (NATIVE HAWAIIAN AND OTHER PACIFIC ISLANDER ALONE)
-192
-B01001E_019
-Estimate!!Total:!!Female:!!5 to 9 years
-SEX BY AGE (NATIVE HAWAIIAN AND OTHER PACIFIC ISLANDER ALONE)
-193
-B01001E_020
-Estimate!!Total:!!Female:!!10 to 14 years
-SEX BY AGE (NATIVE HAWAIIAN AND OTHER PACIFIC ISLANDER ALONE)
-194
-B01001E_021
-Estimate!!Total:!!Female:!!15 to 17 years
-SEX BY AGE (NATIVE HAWAIIAN AND OTHER PACIFIC ISLA
+
+```{r}
+
+# Finding Asian renters
+
+asian_renters <- everything_combined %>%
+  summarise(
+    md_renters_asian_state = sum(renter_asian_population),
+    md_asian_pop = sum(asian_population)) %>%
+  mutate(percent_asian_renters = (md_renters_asian_state/md_asian_pop)*100) %>%
+
+# Finding Asian home owners
+
+asian_owners <- everything_combined %>%
+  summarise(
+    md_owners_asian_state = sum(owner_asian_population),
+    md_asian_pop = sum(asian_population)) %>%
+  mutate(percent_asian_owners = (md_owners_asian_state/md_asian_pop)*100)
+
+# Finding Native renters
+
+native_renters <- everything_combined %>%
+  summarise(
+    md_renters_native_state = sum(renter_native_population),
+    md_native_pop = sum(native_population)) %>%
+  mutate(percent_native_renters = (md_renters_native_state/md_native_pop)*100)
+
+# Finding Native homeowners
+
+native_owners <- everything_combined %>%
+  summarise(
+    md_owners_native_state = sum(owner_native_population),
+    md_native_pop = sum(native_population)) %>%
+  mutate(percent_native_owners = (md_owners_native_state/md_native_pop)*100)
+
+# Finding Pacific Island renters
+
+pacific_renters <- everything_combined %>%
+  summarise(
+    md_renters_pacific_state = sum(renter_pacific_island_population),
+    md_pacific_pop = sum(pacific_island_population)) %>%
+  mutate(percent_pacific_renters = (md_renters_pacific_state/md_pacific_pop)*100)
+
+# Finding Pacific Island homeowners 
+
+pacific_owners <- everything_combined %>%
+  summarise(
+    md_owner_pacific_state = sum(owner_pacific_island_population),
+    md_pacific_pop = sum(pacific_island_population)) %>%
+  mutate(percent_pacific_renters = (md_owner_pacific_state/md_pacific_pop)*100)
+
+# Finding Hispanic renters
+
+everything_combined %>%
+  summarise(
+    md_renters_hispanic_state = sum(renter_hispanicorlatino_data),
+    md_white_pop = sum(white_population)) %>%
+  mutate(percent_hispanic_renters = (md_renters_hispanic_state/md_white_pop)*100)
+
+# Finding Hispanic homeowners
+
+everything_combined %>%
+  summarise(
+    md_owners_hispanic_state = sum(hispanicorlatino_data_homeownership),
+    md_white_pop = sum(white_population)) %>%
+  mutate(percent_hispanic_owners = (md_owners_hispanic_state/md_white_pop)*100)
 
 
-B01001B_018
-Estimate!!Total:!!Female:!!Under 5 years
-SEX BY AGE (BLACK OR AFRICAN AMERICAN ALONE)
-99
-B01001B_019
-Estimate!!Total:!!Female:!!5 to 9 years
-SEX BY AGE (BLACK OR AFRICAN AMERICAN ALONE)
-100
-B01001B_020
-Estimate!!Total:!!Female:!!10 to 14 years
-SEX BY AGE (BLACK OR AFRICAN AMERICAN ALONE)
-101
-B01001B_021
-Estimate!!Total:!!Female:!!15 to 17 years
-SEX BY AGE (BLACK OR AFRICAN AMERICAN ALONE)
+# Showing like this because we have made joining these dataframes too difficult because they don't contain a name column, but we can fix in future if needed. 
 
-B01001A_018
-Estimate!!Total:!!Female:!!Under 5 years
-SEX BY AGE (WHITE ALONE)
-68
-B01001A_019
-Estimate!!Total:!!Female:!!5 to 9 years
-SEX BY AGE (WHITE ALONE)
-69
-B01001A_020
-Estimate!!Total:!!Female:!!10 to 14 years
-SEX BY AGE (WHITE ALONE)
-70
-B01001A_021
-Estimate!!Total:!!Female:!!15 to 17 years
-SEX BY AGE (WHITE ALONE)
+# Black renters = 17.48%
+# Black owners = 18.55%
+
+# White r = 9.56%
+# White o = 29.88%
+
+# Asian r = 9.66%
+# Asian o = 22.54%
+
+# Native r = 17.65%
+# Native o = 22.38%
+
+# Pacific r = 13.18%
+# Pacific o =  18.49%
+
+# Hispanic r = 2.19%
+# Hispanic o = 2.19%
 
 
-B01001B_003
-Estimate!!Total:!!Male:!!Under 5 years
-SEX BY AGE (BLACK OR AFRICAN AMERICAN ALONE)
-84
-B01001B_004
-Estimate!!Total:!!Male:!!5 to 9 years
-SEX BY AGE (BLACK OR AFRICAN AMERICAN ALONE)
-85
-B01001B_005
-Estimate!!Total:!!Male:!!10 to 14 years
-SEX BY AGE (BLACK OR AFRICAN AMERICAN ALONE)
-86
-B01001B_006
-Estimate!!Total:!!Male:!!15 to 17 years
-SEX BY AGE (BLACK OR AFRICAN AMERICAN ALONE)
+```
 
 
 # TUESDAY: ANDRES ZOOM COMMENT: Ok so on Tuesday, our final exploration will be to find the more accurate population by demographic data to see what the true ownership/rentership breakdown is. We’ll do this by taking the “SEX BY AGE” ACS variables for males under 18, combined with the same thing for females under 18. Then we’ll combine that data and we will subtract those numbers from the total populations by demographic, which will allow us to run the percentage calculations to find the true numbers. To get us started, SEX BY AGE (WHITE ALONE) is “B01001A_025.
+
+# We acknowledge the discrepancies in the total ownership and rentership numbers, and will be exploring this further by comparing those stats to a different ACS variable of total population of people in each demographic category over the age of 18, to see how the numbers change. This would make sense that the numbers may be different because people under 18 cannot own or rent homes. The ACS variable we select will reflect populations 18 years and older.
+
+Update to question 5 based on filtering out of children data:
+
+
+
+
+
+
+
+
+
+* QUESTION 6 *
 
 
 Derek comment: This is good stuff and getting better. I would love to see Prince George's compared to another county in Maryland that is at least somewhat similar, either demographically or in terms of growth. You also could compare it to Maryland as a whole. This would offer some context for what you are finding at a broad level.
