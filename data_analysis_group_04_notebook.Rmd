@@ -820,39 +820,39 @@ asian_owners_no_kids <- everything_combined %>%
 native_renters_no_kids <- everything_combined %>%
   summarise(
     md_renters_native_state = sum(renter_native_population),
-    md_native_pop = sum((native_population)-3241)) %>%
+    md_native_pop = sum(native_population)) %>%
   mutate(percent_native_renters = (md_renters_native_state/md_native_pop)*100)
 
 # Finding Native homeowners - using Hawaiian as a proxy this makes literally no sense, so this data is a wash
 
-native_owners_no_kids <- everything_combined %>%
+everything_combined %>%
   summarise(
     md_owners_native_state = sum(owner_native_population),
-    md_native_pop = sum((native_population)-3241)) %>%
+    md_native_pop = sum(native_population)) %>%
   mutate(percent_native_owners = (md_owners_native_state/md_native_pop)*100)
 
 # Finding Pacific Island renters - 
 
-pacific_renters_no_kids <- everything_combined %>%
+everything_combined %>%
   summarise(
     md_renters_pacific_state = sum(renter_pacific_island_population),
-    md_pacific_pop = sum((pacific_island_population)-691)) %>%
+    md_pacific_pop = sum(pacific_island_population)) %>%
   mutate(percent_pacific_renters = (md_renters_pacific_state/md_pacific_pop)*100)
 
 # Finding Pacific Island homeowners 
 
-pacific_owners_no_kids <- everything_combined %>%
+everything_combined %>%
   summarise(
     md_owner_pacific_state = sum(owner_pacific_island_population),
-    md_pacific_pop = sum((pacific_island_population)-691)) %>%
+    md_pacific_pop = sum(pacific_island_population)) %>%
   mutate(percent_pacific_renters = (md_owner_pacific_state/md_pacific_pop)*100)
 
 # Finding Hispanic renters
 
-hispanic_renters_no_kids <- everything_combined %>%
+everything_combined %>%
   summarise(
     md_renters_hispanic_state = sum(renter_hispanicorlatino_data),
-    md_white_pop = sum((white_population)-205266)) %>%
+    md_white_pop = sum(white_population)) %>%
   mutate(percent_hispanic_renters = (md_renters_hispanic_state/md_white_pop)*100)
 
 # Finding Hispanic homeowners
@@ -898,6 +898,8 @@ everything_combined %>%
 
 # Showing like this because we have made joining these dataframes too difficult because they don't contain a name column, but we can fix in future if needed. 
 
+# These are the figures of home ownership before we took out the population of kids of each race in each county and summed those figures. 
+
 # Black renters = 17.48%
 # Black owners = 18.55%
 
@@ -916,9 +918,47 @@ everything_combined %>%
 # Hispanic r = 2.19%
 # Hispanic o = 2.19%
 
+# These are the figures for home ownership and home rentership that were present after we manually did calculations subtracting the under 18 population of each race from the total population of each race in the county.
+
+# Totals:
+
+# native_hawaiian_kids: 691
+
+# pacific_kids: 
+
+# hispanic_kids: 205266
+
+# native_alaskan_kids: 3241
+
+# white_kids: 656618
+
+# black_kids: 416120
+
+# asian_kdis: 75827
+
+# 691+205266+75827+3241+416120+656618 = 1,357,763
+
+
+# asian-owners-no-kids: 28.19
+# asian-renters-no-kids: 12.08
+
+# white-owners-no-kids: 37%
+# white-renters-no-kids: 12%
+
+# native-owners-no-kids: 28%
+# native-renters-no-kids: 22%
+
+# hawaiian/pacific-owners-no-kids:  24%
+# hawaiian/pacific-renters-no-kids:  17%
+
+# black-owners-no-kids: 24%
+# black-renters-no-kids: 22.8%
+
+# hispanic-owners-no-kids:  roughly no change
+# hispanic-renters-no-kids: roughly no change  
+
 
 ```
-416120
 
 
 # TUESDAY: ANDRES ZOOM COMMENT: Ok so on Tuesday, our final exploration will be to find the more accurate population by demographic data to see what the true ownership/rentership breakdown is. We’ll do this by taking the “SEX BY AGE” ACS variables for males under 18, combined with the same thing for females under 18. Then we’ll combine that data and we will subtract those numbers from the total populations by demographic, which will allow us to run the percentage calculations to find the true numbers. To get us started, SEX BY AGE (WHITE ALONE) is “B01001A_025.
