@@ -963,12 +963,12 @@ everything_combined %>%
 
 # TUESDAY: ANDRES ZOOM COMMENT: Ok so on Tuesday, our final exploration will be to find the more accurate population by demographic data to see what the true ownership/rentership breakdown is. We’ll do this by taking the “SEX BY AGE” ACS variables for males under 18, combined with the same thing for females under 18. Then we’ll combine that data and we will subtract those numbers from the total populations by demographic, which will allow us to run the percentage calculations to find the true numbers. To get us started, SEX BY AGE (WHITE ALONE) is “B01001A_025.
 
-# We acknowledge the discrepancies in the total ownership and rentership numbers, and will be exploring this further by comparing those stats to a different ACS variable of total population of people in each demographic category over the age of 18, to see how the numbers change. This would make sense that the numbers may be different because people under 18 cannot own or rent homes. The ACS variable we select will reflect populations 18 years and older.
+# From original Q5 response: We acknowledge the discrepancies in the total ownership and rentership numbers, and will be exploring this further by comparing those stats to a different ACS variable of total population of people in each demographic category over the age of 18, to see how the numbers change. This would make sense that the numbers may be different because people under 18 cannot own or rent homes. The ACS variable we select will reflect populations 18 years and older.
 
 Update to question 5 based on filtering out of children data:
 
 
-We did the calculations to find the total population of each racial demographic in the state without kids by hand, using the console in R as a workaround to the code issues we were having. It was the most efficient way forward for us.
+We did the calculations to find the total population of each racial demographic in the state without kids by hand, using the console in R as a workaround to the code issues we were having. It was the most efficient way forward for us given the limited time we had to allocate towards this side quest of question #5.
 
 The number of Asians with no kids who rent vs. own a house isn't too far off from the total population of the race that rents vs. owns a house. 12.08% of Asians without kids rented compared to the race's total of 9.66%. 28.19% of Asians without kids owned a house when subtracting the number of kids from the figures, compared to 22.54% from the race's total population.
 
@@ -982,8 +982,6 @@ We would have loved to pursue inquiries into Prince George's County specifically
 
 * QUESTION 6 *
 
-
-Derek comment: This is good stuff and getting better. I would love to see Prince George's compared to another county in Maryland that is at least somewhat similar, either demographically or in terms of growth. You also could compare it to Maryland as a whole. This would offer some context for what you are finding at a broad level.
 
 # 6. How does the racial demographic breakdown of housing in Prince George's County compare to the breakdown of the rest of the state? Do any demographic groups stand out for being particularly different than the breakdowns of the state as a whole? Why do we think there is a discrepancy?
 
