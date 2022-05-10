@@ -564,7 +564,7 @@ asian_renters <- everything_combined %>%
   summarise(
     md_renters_asian_state = sum(renter_asian_population),
     md_asian_pop = sum(asian_population)) %>%
-  mutate(percent_asian_renters = (md_renters_asian_state/md_asian_pop)*100)
+  mutate(percent_asian_renters = (md_renters_asian_state/md_asian_pop)*100) %>%
 
 # Finding Asian home owners
 
@@ -666,6 +666,17 @@ white_kids <- get_acs(
   year = 2019
 ) %>%
   select(NAME, variable, estimate)
+
+white_kids_clean <- white_kids %>%
+  group_by(NAME) %>%
+  summarise(
+    total_kids = sum(estimate)
+  )
+
+white_kids_clean %>%
+  summarise(
+    total_kids_state = sum(total_kids)
+  )
 
 black_kids <- get_acs(
   geography = "county",
